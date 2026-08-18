@@ -63,6 +63,20 @@ app.use(cors({
 }))
 app.use(express.json({ limit: '20mb' }))
 
+// Root welcome route
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    message: '🏛️ CivicSense AI Backend API is live and running.',
+    endpoints: {
+      health: '/api/health',
+      classify: '/api/classify',
+      seed: '/api/seed',
+    },
+    timestamp: new Date().toISOString(),
+  })
+})
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({
